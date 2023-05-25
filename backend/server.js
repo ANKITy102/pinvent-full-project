@@ -14,8 +14,8 @@ const app = express()
 
 
 //middlewares
-app.use(express.json());
 app.use(cookieParser());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 // app.use(bodyParser.json());  //no need of body parser
 app.use(cors({

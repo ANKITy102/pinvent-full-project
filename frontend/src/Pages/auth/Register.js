@@ -51,13 +51,15 @@ const Register = () => {
     try {
       const data = await registerUser(userData);
       // console.log(data);
+      
       await dispatch(SET_LOGIN(true));
       await dispatch(SET_NAME(data.name));
       navigate("/dashboard");
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      console.log(error.message)
+      // toast.error(error.message);
+      // console.log(error.message)
     }
     
   }

@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import ProductForm from '../../components/productForm/ProductForm'
 import {useDispatch, useSelector} from "react-redux";
-import { selectIsLoading } from '../../redux/features/description/productSlice';
-import { createProduct } from '../../redux/features/description/productSlice';
+import { selectIsLoading } from '../../redux/features/product/productSlice';
+import { createProduct } from '../../redux/features/product/productSlice';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../components/loader/Loader';
 const initialState = {
     name:"",
     category:"",
     quantity:"",
     price:"",
 }
-const addProduct = () => {
+const AddProduct = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [product, setProduct] = useState(initialState);
@@ -19,16 +20,16 @@ const addProduct = () => {
     const [description, setDescription] = useState("");
 
     const isLoading = useSelector(selectIsLoading);
-    const {name, category, quantity, price} = description;
+    const {name, category, quantity, price} = product;
 
     
   const handleInputChange = (e)=>{
     const {name, value} = e.target;
-    setProduct({...description, [name]: value})
+    setProduct({...product, [name]: value})
   }
   const handleImageChange = (e)=>{
     setProductImage(e.target.files[0])
-    setImagePreview(URL.createObjectURL(e.target.file[0]))
+    setImagePreview(URL.createObjectURL(e.target.files[0]))
   }
 
   const generateSKU = (category) =>{
@@ -47,13 +48,15 @@ const addProduct = () => {
     formData.append("price", price)
     formData.append("description", description)
     formData.append("image", productImage)
+    formData.append("quantity", quantity)
     console.log(...formData);
     await dispatch(createProduct(formData))
 
-    navigate("/dashboard");
+    // navigate("/dashboard");
   }
   return (
     <div>
+        {isLoading && <Loader/>}
       <h3 className="--mt">Add New Product</h3>
       <ProductForm 
       product={product}
@@ -69,4 +72,4 @@ const addProduct = () => {
   )
 }
 
-export default addProduct
+export default AddProduct

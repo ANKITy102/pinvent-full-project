@@ -40,6 +40,7 @@ const SideBar = ({children}) => {
       </div>
       <main style={{paddingLeft: isOpen?"230px":"60px",  transition:"all .5s"}}>
         {children}
+        
       </main>
     </div>
   )

@@ -13,7 +13,7 @@ import axios from "axios";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getLoginStatus } from "./services/authService";
 import { SET_LOGIN } from "./redux/features/auth/authSlice";
 axios.defaults.withCredentials = true;
@@ -26,6 +26,7 @@ function App() {
   }
   useEffect(()=>{
     loginStatus();
+    // eslint-disable-next-line
   },[])
   return (
    <BrowserRouter>

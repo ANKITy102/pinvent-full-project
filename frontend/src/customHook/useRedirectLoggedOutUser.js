@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import  { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getLoginStatus } from '../services/authService'
@@ -10,6 +10,7 @@ const useRedirectLoggedOutUser = (path) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const redirectLoggedOutUser = async()=>{
+        console.log("hello, redirectLoggedOurUser is triggerd")
         const isLoggedIn = await getLoginStatus();
         dispatch(SET_LOGIN(isLoggedIn));
         if(!isLoggedIn){
@@ -20,6 +21,7 @@ const useRedirectLoggedOutUser = (path) => {
     }
     useEffect(() => {
         redirectLoggedOutUser();
+        // eslint-disable-next-line
     }, [navigate, path, dispatch])
 }
 

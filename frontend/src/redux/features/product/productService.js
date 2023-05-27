@@ -10,8 +10,15 @@ const API_URL = `${BACKEND_URL}/api/product`;
     return response.data
 }
 
+//Get all products;
+const getProducts = async() =>{
+    const response = await axios.get(API_URL);
+    return response.data;
+}
+
 const productService = {
-    createProduct
+    createProduct,
+    getProducts
 }
 
 export default productService;

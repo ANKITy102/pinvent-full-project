@@ -60,7 +60,7 @@ const productSlice = createSlice({
         .addCase(createProduct.fulfilled, (state, action)=>{
             state.isLoading = false;
             state.isSuccess = true;
-            state.products = (action.payload);
+            state.products.push(action.payload);
             toast.success("Product added successfully");
         })
         .addCase(createProduct.rejected, (state, action)=>{

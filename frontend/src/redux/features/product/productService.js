@@ -12,6 +12,7 @@ const API_URL = `${BACKEND_URL}/api/product`;
 
 //Get all products;
 const getProducts = async() =>{
+    console.log("get product route")
     const response = await axios.get(API_URL);
     return response.data;
 }

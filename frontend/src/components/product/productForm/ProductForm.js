@@ -2,7 +2,7 @@ import React from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './ProductForm.scss'
-import Card from '../card/Cardf';
+import Card from '../../card/Cardf';
 const ProductForm = ({
     product, productImage, imagePreview, description,
     setDescription, handleInputChange,
@@ -31,10 +31,10 @@ const ProductForm = ({
                     <input type="text" placeholder="Product Category" onChange={handleInputChange} name="category" value={product?.category} />
 
                     <label>Product Price:</label>
-                    <input type="text" placeholder="Product Price" onChange={handleInputChange} name="price" value={product?.price} />
+                    <input type="number" placeholder="Product Price" onChange={handleInputChange} name="price" value={product?.price} />
 
                     <label>Product Quantity:</label>
-                    <input type="text" placeholder="Product quantity" onChange={handleInputChange} name="quantity" value={product?.quantity} />
+                    <input type="number" placeholder="Product quantity" onChange={handleInputChange} name="quantity" value={product?.quantity} />
 
                     <label>Product Description: </label>
                      <ReactQuill theme="snow" value={description} onChange={setDescription} modules={ProductForm.modules} formats={ProductForm.formats}/>;

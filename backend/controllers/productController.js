@@ -28,7 +28,7 @@ const createProduct = asyncHandler(async (req, res) => {
         }
 
         fileData = {
-            fileName: req.file.originalname,
+            fileName: req.file.originalname, //it give like image/jpeg
             filePath: uploadedFile.secure_url,
             fileName: req.file.mimetype,
             filesize: fileSizeFormatter(req.file.size, 2)

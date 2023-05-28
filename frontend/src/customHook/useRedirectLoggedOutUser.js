@@ -10,7 +10,6 @@ const useRedirectLoggedOutUser = (path) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const redirectLoggedOutUser = async()=>{
-        console.log("hello, redirectLoggedOurUser is triggerd")
         const isLoggedIn = await getLoginStatus();
         dispatch(SET_LOGIN(isLoggedIn));
         if(!isLoggedIn){

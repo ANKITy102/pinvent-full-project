@@ -10,11 +10,12 @@ import ReactPaginate from 'react-paginate';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { deleteProduct, getProducts } from '../../../redux/features/product/productSlice';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProductList = ({ products, isLoading }) => {
   const [search, setSearch] = useState("");
   const filteredProducts = useSelector(selectFilteredProducts)
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const shortenText = (text, n) => {
@@ -97,6 +98,7 @@ const confirmDelete = (id) =>{
           ) : (
             <table>
               <thead>
+                <tr>
                 <th>s/n</th>
                 <th>Name</th>
                 <th>Category </th>
@@ -104,11 +106,13 @@ const confirmDelete = (id) =>{
                 <th>Quantity</th>
                 <th>Value</th>
                 <th>Action</th>
+                </tr>
               </thead>
               <tbody>
                 {
                   currentItems.map((product, index) => {
                     const { _id, name, category, price, quantity } = product;
+                  
                     return (
                       <tr key={_id}>
                         <td>{index + 1}</td>
@@ -119,10 +123,12 @@ const confirmDelete = (id) =>{
                         <td>&#8377; {price * quantity}</td>
                         <td className="icons">
                           <span>
-                            <AiOutlineEye size={25} color={"purple"} />
+                            <Link to={`/product-detail/${_id}`}>
+                            <AiOutlineEye size={25} color={"purple"}/></Link>
                           </span>
                           <span>
-                            <FaEdit size={25} color={"green"} />
+                            <Link to={`/edit-product/${_id}`}>
+                            <FaEdit size={25} color={"green"} /></Link>
                           </span>
                           <span>
                             <FaTrashAlt size={25} color={"red"} onClick = {()=>{

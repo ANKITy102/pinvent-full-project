@@ -7,6 +7,7 @@ import { SET_LOGIN } from '../redux/features/auth/authSlice'
 
 
 const useRedirectLoggedOutUser = (path) => {
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const redirectLoggedOutUser = async()=>{

@@ -20,7 +20,9 @@ const ProductForm = ({
                         }} />
                         {imagePreview
                             ? (<div className="image-preview">
-                                <img src={imagePreview} alt="product" />
+                                <img src={imagePreview} alt="product" style={{
+                                    objectFit: "contain"
+                                }}/>
                             </div>)
                             : (<p>No image set for this product.</p>)}
                     </Card>

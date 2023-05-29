@@ -164,7 +164,6 @@ const productSlice = createSlice({
             state.isLoading = false;
             state.isSuccess = true;
             state.isError = false;
-            console.log(action.payload);
             state.products = (action.payload);
         })
         .addCase(getProducts.rejected, (state, action)=>{
@@ -230,6 +229,9 @@ export const {CALC_STORE_VALUE, CALC_OUTOFSTOCK, CALC_CATEGORY} = productSlice.a
 
 export const selectIsLoading = (state) =>{
     return state.product.isLoading;
+}
+export const selectProduct = (state)=>{
+    return state.product.product;
 }
 export const selectTotalStoreValue = (state) =>{
     return state.product.totalStoreValue;

@@ -18,6 +18,8 @@ import { useEffect } from "react";
 import { getLoginStatus } from "./services/authService";
 import { SET_LOGIN } from "./redux/features/auth/authSlice";
 import ProductDetail from "./components/product/productDetail/PfroductDetail";
+import EditProduct from "./Pages/editProduct/EditProduct";
+import Profile from "./Pages/profile/Profile";
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -65,7 +67,26 @@ function App() {
         </SideBar>
         }
       />
-
+      <Route
+        path="/edit-product/:id"
+        element={
+          <SideBar>
+          <Layout>
+            <EditProduct/>
+          </Layout>
+        </SideBar>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <SideBar>
+          <Layout>
+            <Profile/>
+          </Layout>
+        </SideBar>
+        }
+      />
     </Routes>
     </BrowserRouter>
   );

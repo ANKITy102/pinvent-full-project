@@ -33,7 +33,7 @@ const updateProduct = async (id, formData) =>{
     return response.data;
 }
 const productService = {
-    createProduct,
+    createProduct, 
     getProducts,
     deleteProduct,
     getProduct,

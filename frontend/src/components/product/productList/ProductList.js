@@ -7,6 +7,9 @@ import Search from '../../search/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { FILTER_PRODUCTS, selectFilteredProducts } from '../../../redux/features/product/filterSlice';
 import ReactPaginate from 'react-paginate';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { deleteProduct, getProducts } from '../../../redux/features/product/productSlice';
 
 const ProductList = ({ products, isLoading }) => {
   const [search, setSearch] = useState("");
@@ -23,19 +26,37 @@ const ProductList = ({ products, isLoading }) => {
     return text;
   }
 
+const delProduct = async (id)=>{
+  await dispatch(deleteProduct(id));
+  await dispatch(getProducts());
+}
 
+
+const confirmDelete = (id) =>{
+  
+    confirmAlert({
+      title: 'Delete submit!!',
+      message: 'Are you sure to delete this product.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => delProduct(id)
+        },
+        {
+          label: 'No',
+          // onClick: () => alert('Click No')
+
+        }
+      ]
+    });
+
+}
 
 
   //  Begin Pagination
   const items = filteredProducts;
-
-    // Here we use item offsets; we could also use page offsets
-    // following the API or data you're working with.
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 5;
-    // Simulate fetching items from another resources.
-    // (This could be items from props; or items loaded in a local state
-    // from an API endpoint with useEffect and useState)
     const endOffset = itemOffset + itemsPerPage;
     const currentItems = items.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(items.length / itemsPerPage);
@@ -45,23 +66,8 @@ const ProductList = ({ products, isLoading }) => {
       const newOffset = (event.selected * itemsPerPage) % items.length;
       setItemOffset(newOffset);
     };
+// End pagination
 
-    // return (
-    //   <>
-    //     <Items currentItems={currentItems} />
-    // <ReactPaginate
-    //   breakLabel="..."
-    //   nextLabel="next >"
-    //   onPageChange={handlePageClick}
-    //   pageRangeDisplayed={5}
-    //   pageCount={pageCount}
-    //   previousLabel="< previous"
-    //   renderOnZeroPageCount={null}
-    // />
-    //   </>
-    // );
-  
-  //  End Paginantion
 
 
 
@@ -119,7 +125,9 @@ const ProductList = ({ products, isLoading }) => {
                             <FaEdit size={25} color={"green"} />
                           </span>
                           <span>
-                            <FaTrashAlt size={25} color={"red"} />
+                            <FaTrashAlt size={25} color={"red"} onClick = {()=>{
+                                confirmDelete(_id);
+                            }}/>
                           </span>
                         </td>
                       </tr>

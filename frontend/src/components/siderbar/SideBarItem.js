@@ -13,12 +13,12 @@ const SideBarItem = ({ item,  isOpen }) => {
 
     return (
       <div className={expandMenu ? "sidebar-item s-parent open" : "sidebar-item s-parent"}>
-        <div className="sidebar-title">
+        <div className="sidebar-title" style={{}} onClick={() => setExpandMenu(!expandMenu)} >
           <span>
             {item.icon && <div className="icon">{item.icon}</div>}
             {isOpen && <div> {item.title}</div>}
           </span>
-          <MdKeyboardArrowRight size={25} className="arrow-icon" onClick={() => setExpandMenu(!expandMenu)} />
+          <MdKeyboardArrowRight size={25} className="arrow-icon" />
         </div>
         <div className="sidebar-content">
           {item.childrens.map((child, index) => {
@@ -42,6 +42,7 @@ const SideBarItem = ({ item,  isOpen }) => {
   else {
     return (
       <NavLink to={item.path} className={activeLink}>
+        {/* By defualt the navlink provide the isActive attribute to know the link is active or not */}
         <div className="sidebar-item s-parent">
           <div className="sidebar-title">
             <span>

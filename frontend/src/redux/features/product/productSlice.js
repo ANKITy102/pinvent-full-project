@@ -136,7 +136,7 @@ const productSlice = createSlice({
 
                 return array.push(category)
             })
-            const uniqueCategory = [... new Set(array)]
+            const uniqueCategory = [...new Set(array)]
             state.category = uniqueCategory.length
         }
     },
